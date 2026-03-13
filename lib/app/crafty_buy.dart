@@ -50,7 +50,7 @@ class craftybuyapp extends StatelessWidget {
                     darkTheme: apptheme.darkTheme,
                     locale: languageprovider.currentlocale,
                     supportedLocales: languageprovider.supportedlocales,
-                    themeMode: ThemeMode.dark,
+                    themeMode: ThemeMode.light,
                   );
                 }
               ),
