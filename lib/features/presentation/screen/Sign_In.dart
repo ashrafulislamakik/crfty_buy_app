@@ -1,28 +1,22 @@
 import 'package:crfty_buy/app/app_colors.dart';
 import 'package:crfty_buy/app/extensions/utils_extension.dart';
 import 'package:crfty_buy/features/Shared/Presentation/Utils/Validators.dart';
-import 'package:crfty_buy/features/presentation/screen/Sign_In.dart';
-import 'package:crfty_buy/features/presentation/screen/Verify_Otp.dart';
 import 'package:crfty_buy/features/presentation/widget/app_logo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
 
-  static const String name = "/Sign_Up";
+  static const String name = "/Sign_In";
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
 
   final TextEditingController _emailTEController = TextEditingController();
-  final TextEditingController _firstnameTEController = TextEditingController();
-  final TextEditingController _lastnameTEController = TextEditingController();
-  final TextEditingController _phoneTEController = TextEditingController();
-  final TextEditingController _cityTEController = TextEditingController();
   final TextEditingController _passwoardTEController = TextEditingController();
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -38,11 +32,12 @@ class _SignUpState extends State<SignUp> {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 children: [
+                  const SizedBox(height: 48),
                   AppLogo(),
                   const SizedBox(height: 8),
-                  Text("Sign Up with Email", style: context.textTheme.titleLarge),
+                  Text("Welcome Back", style: context.textTheme.titleLarge),
                   Text(
-                    "Get Started with your detais",
+                    "Please Enter Your Email addrease",
                     style: context.textTheme.bodyLarge?.copyWith(
                       color: Colors.grey,
                     ),
@@ -55,42 +50,6 @@ class _SignUpState extends State<SignUp> {
                     ),
                     validator: (String? value) =>
                     Validators.validateEmail(value, "Email is Required"),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextFormField(
-                    decoration:
-                    InputDecoration(
-                        hintText: "First Name "
-                    ),
-                    validator: (String? value) =>
-                        Validators.validateText(value, "First Name is Required"),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextFormField(
-                    decoration:
-                    InputDecoration(
-                        hintText: "Last Name"
-                    ),
-                    validator: (String? value) =>
-                        Validators.validateText(value, "Last Name is Required"),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextFormField(
-                    decoration:
-                    InputDecoration(
-                        hintText: "Phone"
-                    ),
-                    validator: (String? value) =>
-                        Validators.validateText(value, "Last Name is Required"),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextFormField(
-                    decoration:
-                    InputDecoration(
-                        hintText: "City"
-                    ),
-                    validator: (String? value) =>
-                        Validators.validateText(value, "City is Required"),
                   ),
                   const SizedBox(height: 8,),
                   TextFormField(
@@ -113,11 +72,11 @@ class _SignUpState extends State<SignUp> {
                         padding: EdgeInsets.symmetric(vertical: 12),
                         backgroundColor: AppColors.themeColor
                       ),
-                      onPressed: _onTapSignUpButton, child: Text("Sign Up")
+                      onPressed: _onTapSignInButton, child: Text("Sign Up")
                   ),
                   const SizedBox(height: 16,),
-                  TextButton(onPressed: _onTapSignInButton,
-                      child: Text("Already have an account? Sign in"))
+                  TextButton(onPressed: _onTapSignUpButton,
+                      child: Text("Need an account? Sign Up"))
 
                 ],
               ),
@@ -128,21 +87,15 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  void _onTapSignInButton (){}
   void _onTapSignUpButton (){
-    Navigator.pushNamed(context, Verify_Otp.name);
-  }
-  void _onTapSignInButton (){
-    Navigator.pushNamed(context, SignIn.name);
+    Navigator.pop(context);
   }
 
   @override
   void dispose() {
     _emailTEController.dispose();
     _passwoardTEController.dispose();
-    _lastnameTEController.dispose();
-    _firstnameTEController.dispose();
-    _phoneTEController.dispose();
-    _cityTEController.dispose();
 
     super.dispose();
   }

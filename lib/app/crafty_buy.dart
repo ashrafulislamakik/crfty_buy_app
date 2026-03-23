@@ -14,6 +14,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../features/Shared/Presentation/providers/main_nav_provider.dart';
+
 
 
 
@@ -24,7 +26,8 @@ class craftybuyapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=> Languageprovider())
+        ChangeNotifierProvider(create: (context)=> Languageprovider()),
+        ChangeNotifierProvider(create: (context)=> MainNavProvider())
       ],
       child:
 

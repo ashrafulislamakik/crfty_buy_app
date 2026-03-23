@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../Shared/Presentation/Main_Nav_Holders_Screen.dart';
 import '../widget/app_logo.dart';
-import 'Sign_Up.dart';
 
 class splash_screen extends StatefulWidget {
   const splash_screen({super.key});
@@ -20,7 +20,7 @@ class _splash_screenState extends State<splash_screen> {
 
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, SignUp.name);
+    Navigator.pushReplacementNamed(context, MainNavHoldersScreen.name);
   }
 
 
