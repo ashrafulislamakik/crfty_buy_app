@@ -1,6 +1,12 @@
+import 'package:crfty_buy/features/Cart/Presentations/screens/cart_screens.dart';
 import 'package:crfty_buy/features/Shared/Presentation/providers/main_nav_provider.dart';
+import 'package:crfty_buy/features/home/Presentation/providers/home_slider_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../Categories/presentation/Screens/CategoriesScreens.dart';
+import '../../Wishlist/Presentation/Screens/WishlistScreen.dart';
+import '../../home/Presentation/Screens/home_screen.dart';
 
 class MainNavHoldersScreen extends StatefulWidget {
   const MainNavHoldersScreen({super.key});
@@ -12,12 +18,33 @@ class MainNavHoldersScreen extends StatefulWidget {
 }
 
 class _MainNavHoldersScreenState extends State<MainNavHoldersScreen> {
+
+  final List <Widget> _screens = [
+
+    homescreen(),
+    CategoriesListScreen(),
+    CartSceens(),
+    WishListScreen()
+
+
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<HomeSliderProviders>().getHomeSlider();
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Consumer<MainNavProvider>(
       builder: (context,mainNavProviders,_) {
         return Scaffold(
-          body: SizedBox(),
+          body: _screens[mainNavProviders.selectedIndex],
             bottomNavigationBar: NavigationBar(
                 onDestinationSelected: mainNavProviders.updateIndex,
                 selectedIndex: mainNavProviders.selectedIndex,

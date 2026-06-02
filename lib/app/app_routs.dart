@@ -3,7 +3,10 @@ import 'package:crfty_buy/features/presentation/screen/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../features/Products/Presentation/Screens/Product_details_Screen.dart';
+import '../features/Products/Presentation/Screens/product_list_screen.dart';
 import '../features/Shared/Presentation/Main_Nav_Holders_Screen.dart';
+import '../features/Wishlist/Presentation/Screens/WishlistScreen.dart';
 import '../features/presentation/screen/Sign_Up.dart';
 import '../features/presentation/screen/Verify_Otp.dart';
 
@@ -21,11 +24,28 @@ class AppRouter {
         widget = const SignIn();
         break;
       case Verify_Otp.name:
-        widget = const Verify_Otp();
+        final email = settings.arguments as String;
+        widget = Verify_Otp(email: email,);
         break;
       case MainNavHoldersScreen.name:
         widget = const MainNavHoldersScreen();
         break;
+      case ProductListScreen.name:
+        final categoryName = settings.arguments as String;
+        widget = ProductListScreen(categoryName: categoryName,);
+        break;
+      case WishListScreen.name:
+        widget = const WishListScreen();
+        break;
+
+      case ProductDetailsScreen.name:
+        widget =  ProductDetailsScreen();
+        break;
+
+
+
+
+
 
     }
     return MaterialPageRoute(builder: (_) => widget);

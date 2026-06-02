@@ -5,16 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../features/Shared/Presentation/providers/main_nav_provider.dart';
+import '../features/home/Presentation/providers/home_slider_providers.dart';
 
 
 
@@ -22,12 +16,15 @@ import '../features/Shared/Presentation/providers/main_nav_provider.dart';
 class craftybuyapp extends StatelessWidget {
   const craftybuyapp({super.key});
 
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context)=> Languageprovider()),
-        ChangeNotifierProvider(create: (context)=> MainNavProvider())
+        ChangeNotifierProvider(create: (context)=> MainNavProvider()),
+        ChangeNotifierProvider(create: (context)=> HomeSliderProviders()),
       ],
       child:
 
@@ -40,6 +37,7 @@ class craftybuyapp extends StatelessWidget {
               child: Consumer<Languageprovider>(
                 builder: (context,languageprovider,child) {
                   return MaterialApp(
+                    navigatorKey: navigatorKey,
                     localizationsDelegates:  [
                       AppLocalizations.delegate,
                       GlobalMaterialLocalizations.delegate,
