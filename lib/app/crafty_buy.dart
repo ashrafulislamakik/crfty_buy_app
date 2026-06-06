@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../features/Categories/Providers/Categories_list_Providers.dart';
 import '../features/Shared/Presentation/providers/main_nav_provider.dart';
 import '../features/home/Presentation/providers/home_slider_providers.dart';
 
@@ -25,6 +26,9 @@ class craftybuyapp extends StatelessWidget {
         ChangeNotifierProvider(create: (context)=> Languageprovider()),
         ChangeNotifierProvider(create: (context)=> MainNavProvider()),
         ChangeNotifierProvider(create: (context)=> HomeSliderProviders()),
+        ChangeNotifierProvider(create: (context)=> CategoriesListProviders()),
+
+
       ],
       child:
 

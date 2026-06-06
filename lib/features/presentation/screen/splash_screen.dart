@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../app/Controller/auth_controller.dart';
 import '../../Shared/Presentation/Main_Nav_Holders_Screen.dart';
 import '../widget/app_logo.dart';
 import 'Sign_Up.dart';
@@ -21,7 +22,11 @@ class _splash_screenState extends State<splash_screen> {
 
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, SignUp.name);
+    final bool isIfUserLoggedIn = await AuthController.isIfUserLoggedIn();
+    if (isIfUserLoggedIn) {
+      await AuthController.getUserData();
+    }
+    Navigator.pushReplacementNamed(context, MainNavHoldersScreen.name);
   }
 
 

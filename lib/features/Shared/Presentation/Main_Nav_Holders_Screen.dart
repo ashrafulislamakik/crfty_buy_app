@@ -4,6 +4,7 @@ import 'package:crfty_buy/features/home/Presentation/providers/home_slider_provi
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../Categories/Providers/Categories_list_Providers.dart';
 import '../../Categories/presentation/Screens/CategoriesScreens.dart';
 import '../../Wishlist/Presentation/Screens/WishlistScreen.dart';
 import '../../home/Presentation/Screens/home_screen.dart';
@@ -35,6 +36,7 @@ class _MainNavHoldersScreenState extends State<MainNavHoldersScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<HomeSliderProviders>().getHomeSlider();
+      context.read<CategoriesListProviders>().getCategories();
     });
   }
 
