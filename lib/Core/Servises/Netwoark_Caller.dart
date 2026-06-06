@@ -56,24 +56,24 @@ class NetworkCaller {
     }
   }
   // POST Request Method
-  Future<NetworkResponse> postRequest(String url, {Map<String, dynamic>? body}) async {
+  Future<NetworkResponse> postRequest(
+      String url, {
+        Map<String, dynamic>? body,
+      }) async {
     try {
       Uri uri = Uri.parse(url);
 
-      // রিকোয়েস্ট লগ করা
       _logRequest(url, body: body);
 
-      // Post কল করা
       Response response = await post(
         uri,
         headers: {
-          'Content-Type': 'application/json', // সাধারণত JSON ডাটা পাঠানো হয়
-          ...headers, // আপনার ক্লাসের ডিফল্ট হেডারগুলো এখানে যুক্ত হবে
+          'Content-Type': 'application/json',
+          ...headers,
         },
-        body: jsonEncode(body), // ম্যাপকে JSON স্ট্রিং এ রূপান্তর
+        body: jsonEncode(body),
       );
 
-      // রেসপন্স লগ করা
       _logResponse(url, response);
 
       final decodedData = jsonDecode(response.body);
@@ -82,21 +82,25 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: true,
           statusCode: response.statusCode,
-          body: decodedData["msg"],
+          body: decodedData,
         );
       } else if (response.statusCode == 401) {
         onUnauthorize();
+
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          body: decodedData["msg"],
-          errorMessage: "Unauthorized"
+          body: decodedData,
+          errorMessage:
+          decodedData["msg"]?.toString() ?? "Unauthorized",
         );
       } else {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          body: decodedData["msg"],
+          body: decodedData,
+          errorMessage:
+          decodedData["msg"]?.toString() ?? "Something went wrong",
         );
       }
     } catch (e) {
@@ -107,7 +111,6 @@ class NetworkCaller {
       );
     }
   }
-
 
   void _logRequest(String url, {Map<String, dynamic>? body}) {
     _logger.i(

@@ -23,7 +23,7 @@ class  VerifyOtpProviders extends ChangeNotifier{
     notifyListeners();
 
     final NetworkResponse response = await getNetworkCaller().postRequest(
-      Urls.signup,
+      Urls.verifyotpurl,
       body: {
         "email": email,
         "otp": otp,

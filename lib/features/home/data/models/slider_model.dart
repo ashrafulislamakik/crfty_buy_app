@@ -6,22 +6,20 @@ class SliderModel {
   final String category;
 
   SliderModel({
-
-required this.id,
-required this.photoUrl,
-required this.description,
-required this.brand,
-required this.category});
+    required this.id,
+    required this.photoUrl,
+    required this.description,
+    required this.brand,
+    required this.category,
+  });
 
   factory SliderModel.fromJson(Map<String, dynamic> json) {
     return SliderModel(
-      id: json["_id"],
-      photoUrl: json["photo_url"],
-      description: json["description"],
-      brand: json["brand"],
-      category: json["category"],
+      id: json["_id"]?.toString() ?? "",
+      photoUrl: json["photo_url"]?.toString() ?? "",
+      description: json["description"]?.toString() ?? "",
+      brand: json["brand"]?.toString() ?? "",
+      category: json["category"]?.toString() ?? "",
     );
   }
 }
-
-

@@ -5,7 +5,6 @@ import 'package:crfty_buy/features/presentation/widget/app_logo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../Shared/Presentation/Main_Nav_Holders_Screen.dart';
 import '../../Shared/Presentation/Widgets/snack_bar_mesage.dart';
 import '../../auth/providers/Signin_provider.dart';
@@ -65,6 +64,8 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(height: 8,),
                     TextFormField(
                       controller: _passwoardTEController,
+                      obscureText: true,
+                      obscuringCharacter: "*",
                       decoration:
                       InputDecoration(
                           hintText: "Passwoard"
@@ -110,9 +111,9 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  void _onTapSignInButton (){}
-  Future <void> _onTapSignUpButton () async {
-    if (!_formkey.currentState!.validate()) {
+
+  Future <void> _onTapSignInButton () async {
+    if (_formkey.currentState!.validate()) {
       final bool isSucces = await _signinProvider.SignIn(
           email: _emailTEController.text.trim(),
           password: _passwoardTEController.text
@@ -124,6 +125,12 @@ class _SignInState extends State<SignIn> {
         showSbakBarMessage(
             context, _signinProvider.errorMesege!);
     }
+  }
+
+
+  }
+
+  void _onTapSignUpButton (){
     Navigator.pop(context);
   }
 
@@ -133,6 +140,5 @@ class _SignInState extends State<SignIn> {
     _passwoardTEController.dispose();
 
     super.dispose();
-  }
   }
 }

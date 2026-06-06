@@ -28,7 +28,7 @@ class HomeSliderProviders extends ChangeNotifier {
 
     if (response.isSuccess) {
       List<SliderModel> sliders = [];
-      for (Map<String, dynamic> slider in response.body["data"]["result"]) {
+      for (Map<String, dynamic> slider in response.body["data"]["results"]) {
         sliders.add(SliderModel.fromJson(slider));
       }
       _sliderModels = sliders;

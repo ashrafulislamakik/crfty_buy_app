@@ -91,7 +91,7 @@ class _Verify_OtpState extends State<Verify_Otp> {
                                 padding: EdgeInsets.symmetric(vertical: 12),
                                 backgroundColor: AppColors.themeColor
                               ),
-                              onPressed: _onTapSignInButton, child: Text("Verify")
+                              onPressed: _onTapVerfyIButton , child: Text("Verify")
                           );
                         }
 
@@ -119,14 +119,19 @@ class _Verify_OtpState extends State<Verify_Otp> {
     );
   }
 
+  void _onTapSignInButton (){
+    Navigator.pushNamed(context, SignIn.name);
+  }
+
   Future<void> _onTapVerfyIButton () async {
-    if (!_formkey.currentState!.validate()) {
+    if (_formkey.currentState!.validate()) {
       final bool isSucces = await _verifyootpProvider.verifyOtp(
           email: widget.email,
           otp: _otpTEController.text
       );
       if (isSucces) {
-        Navigator.pushNamedAndRemoveUntil(context, MainNavHoldersScreen.name, (_) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, MainNavHoldersScreen.name, (_) => false);
       } else {
         showSbakBarMessage(context, _verifyootpProvider.errorMesege!);
 
@@ -134,9 +139,7 @@ class _Verify_OtpState extends State<Verify_Otp> {
       }
     }
   }
-  void _onTapSignInButton (){
-    Navigator.pushNamed(context, SignIn.name);
-  }
+
 
   @override
   void dispose() {
