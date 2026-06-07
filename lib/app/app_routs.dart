@@ -3,6 +3,7 @@ import 'package:crfty_buy/features/presentation/screen/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../features/Categories/Models/categories_models.dart';
 import '../features/Products/Presentation/Screens/Product_details_Screen.dart';
 import '../features/Products/Presentation/Screens/product_list_screen.dart';
 import '../features/Shared/Presentation/Main_Nav_Holders_Screen.dart';
@@ -31,8 +32,8 @@ class AppRouter {
         widget = const MainNavHoldersScreen();
         break;
       case ProductListScreen.name:
-        final categoryName = settings.arguments as String;
-        widget = ProductListScreen(categoryName: categoryName,);
+        final category = settings.arguments as Categoriesmodel;
+        widget = ProductListScreen(category: category,);
         break;
       case WishListScreen.name:
         widget = const WishListScreen();

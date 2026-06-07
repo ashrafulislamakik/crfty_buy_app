@@ -8,6 +8,7 @@ class AssetPath {
 
 
   static const String banner = '$_imagepath/banner.png';
+  static const String noImagePng = '$_imagepath/no_image.png';
 
 
 

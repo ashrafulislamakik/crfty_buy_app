@@ -6,7 +6,6 @@ import '../crafty_buy.dart';
 
 NetworkCaller getNetworkCaller () {
   return NetworkCaller( headers: {
-    "token" : "token",
     "content-type" : "application/json"
   },
 

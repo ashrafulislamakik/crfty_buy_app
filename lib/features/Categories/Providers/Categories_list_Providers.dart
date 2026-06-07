@@ -11,7 +11,7 @@ class CategoriesListProviders extends ChangeNotifier {
   int _currentPageNo = 0;
   int? _lastPage;
   bool _getInitialCategoriesListProgress = true;
-  bool _loadMoreCategoriesListProgress = true;
+  bool _loadMoreCategoriesListProgress = false;
   final List<Categoriesmodel> _categories = [];
   bool get getInitialCategoriesListProgress => _getInitialCategoriesListProgress;
   bool get loadMoreCategoriesListProgress => _loadMoreCategoriesListProgress;
@@ -65,6 +65,8 @@ class CategoriesListProviders extends ChangeNotifier {
     bool get _isInitialLoading {
     return _currentPageNo == 1;
     }
+
+    bool get isLoading => _getInitialCategoriesListProgress || _loadMoreCategoriesListProgress;
 
 
 
