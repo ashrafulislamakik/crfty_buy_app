@@ -17,7 +17,7 @@ class ProductListProviders extends ChangeNotifier {
   final List<ProductModel> _products = [];
   bool get getInitialProductListProgress => _getInitialProductListProgress;
   bool get loadMoreProductListProgress => _loadMoreProductListProgress;
-  List<ProductModel> get product => product;
+  List<ProductModel> get product => _products;
 
   String? _errorMesege;
   String? get errorMesege => _errorMesege;
